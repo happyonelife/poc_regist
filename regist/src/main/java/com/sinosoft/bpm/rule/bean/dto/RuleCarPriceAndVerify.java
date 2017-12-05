@@ -1,6 +1,13 @@
 package com.sinosoft.bpm.rule.bean.dto;
 
-public class RuleCarPriceAndVerify {
+import java.io.Serializable;
+
+public class RuleCarPriceAndVerify implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	//车辆核价提交方式，逐级G，只用提交一级E
 	private String CarPriceSubmitType = "E";
 	

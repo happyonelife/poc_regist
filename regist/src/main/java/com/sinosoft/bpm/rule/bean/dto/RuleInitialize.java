@@ -1,10 +1,17 @@
 package com.sinosoft.bpm.rule.bean.dto;
+
+import java.io.Serializable;
+
 /**
  * 初始信息
  * @author chao
  *
  */
-public class RuleInitialize {
+public class RuleInitialize implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	/**核损金额权限**/
 	private	Double	lossAmount ;
 	/**核损有监督模型评分**/

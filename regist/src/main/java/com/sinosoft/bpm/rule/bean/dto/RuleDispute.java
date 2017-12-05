@@ -1,11 +1,17 @@
 package com.sinosoft.bpm.rule.bean.dto;
 
+import java.io.Serializable;
+
 /**
  * 诉讼
  * @author luo
  *
  */
-public class RuleDispute {
+public class RuleDispute implements Serializable{
+		/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 		/**	是否申请重审*/
 		private	String	isApplyReview;
 		/**	是否申请上诉*/

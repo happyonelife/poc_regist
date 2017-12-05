@@ -1,5 +1,6 @@
 package com.sinosoft.bpm.rule.bean.dto;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -7,7 +8,11 @@ import java.util.Date;
  * @author chao
  *
  */
-public class RuleRegist {
+public class RuleRegist implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	/**	是否注销报案	*/
 	private	String	isRegistCancel;
 	/**	是否异地出险 	*/

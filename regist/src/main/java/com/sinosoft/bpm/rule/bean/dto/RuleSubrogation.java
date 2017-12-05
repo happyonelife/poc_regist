@@ -1,6 +1,12 @@
 package com.sinosoft.bpm.rule.bean.dto;
 
-public class RuleSubrogation {
+import java.io.Serializable;
+
+public class RuleSubrogation implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	/**	代赔金额*/
 	private	Double	subPayAmount;
 	/**	清付金额*/

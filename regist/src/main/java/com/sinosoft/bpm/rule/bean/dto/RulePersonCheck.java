@@ -3,13 +3,19 @@
  */
 package com.sinosoft.bpm.rule.bean.dto;
 
+import java.io.Serializable;
+
 /**
  * 人伤查勘
  * 
  * @author JinBao
  * 
  */
-public class RulePersonCheck {
+public class RulePersonCheck implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	/** 性别 */
 	private String gender = "1";//1-男 2-女 
 	/** 年龄 */

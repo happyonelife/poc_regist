@@ -1,11 +1,17 @@
 package com.sinosoft.bpm.rule.bean.dto;
 
+import java.io.Serializable;
+
 /**
  * 核赔
  * @author chao
  *
  */
-public class RuleUndwrt {
+public class RuleUndwrt implements Serializable{
+		/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 		/**	是否总公司理算人员理算*/
 		private	String  isHeadcomp;
 		/**	是否追偿*/

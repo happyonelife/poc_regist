@@ -1,12 +1,18 @@
 package com.sinosoft.bpm.rule.bean.dto;
 
+import java.io.Serializable;
+
 
 /**
  * 人伤调解审核
  * @author chao
  *
  */
-public class RulePresonMediateApproval {
+public class RulePresonMediateApproval implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	/**	人伤调解审核金额*/
 	private	Double	presonMediateamount;
 	/**	是否自保车*/

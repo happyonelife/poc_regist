@@ -1,6 +1,8 @@
 
 package com.sinosoft.bpm.rule.bean.dto;
 
+import java.io.Serializable;
+
 import javax.xml.bind.annotation.XmlRegistry;
 
 
@@ -19,10 +21,15 @@ import javax.xml.bind.annotation.XmlRegistry;
  * 
  */
 @XmlRegistry
-public class ObjectFactory {
+public class ObjectFactory  implements Serializable{
 
 
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: com.sinosoft.bpm.rule.bean.dto
      * 
      */

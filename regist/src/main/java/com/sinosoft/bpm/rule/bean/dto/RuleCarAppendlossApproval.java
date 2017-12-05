@@ -1,10 +1,17 @@
 package com.sinosoft.bpm.rule.bean.dto;
+
+import java.io.Serializable;
+
 /**
  * 追加定损信息
  * @author chao
  *
  */
-public class RuleCarAppendlossApproval {
+public class RuleCarAppendlossApproval implements Serializable{
+		/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 		/**	是否存在非外修换件*/
 		private	String	isExistUnThirdFactoryChgComp;
 		/**	分公司是否有核价人员*/

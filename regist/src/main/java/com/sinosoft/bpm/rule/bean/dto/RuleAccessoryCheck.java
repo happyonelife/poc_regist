@@ -1,10 +1,17 @@
 package com.sinosoft.bpm.rule.bean.dto;
+
+import java.io.Serializable;
+
 /**
  * 配件审验
  * @author chao
  *
  */
-public class RuleAccessoryCheck {
+public class RuleAccessoryCheck  implements Serializable{
+		/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 		/**	是否修复验车*/
 		private	String isRepairCheck;
 		/**	审核人与验发起人是否为同一人*/

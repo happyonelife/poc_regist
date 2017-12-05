@@ -1,5 +1,6 @@
 package com.sinosoft.bpm.rule.bean.dto;
 
+import java.io.Serializable;
 import java.util.Date;
 
 
@@ -8,7 +9,11 @@ import java.util.Date;
  * @author chao
  *
  */
-public class RuleCheck {
+public class RuleCheck implements Serializable{
+		/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 		/**	整案估损金额*/
 		private	Double	sumEstimateLoss;
 		/**	报案风险等级*/

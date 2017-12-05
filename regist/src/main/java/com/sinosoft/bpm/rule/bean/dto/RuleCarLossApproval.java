@@ -1,5 +1,6 @@
 package com.sinosoft.bpm.rule.bean.dto;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -11,7 +12,11 @@ import cn.sinosoft.claim.base.page.car.PrpLcarComponentPage;
  * @author chao
  *
  */
-public class RuleCarLossApproval {
+public class RuleCarLossApproval implements Serializable{
+		/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 		/**	核损是否回退*/
 		private	String	isVerifyBack;
 		/**	核价是否回退*/

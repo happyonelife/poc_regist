@@ -1,11 +1,17 @@
 package com.sinosoft.bpm.rule.bean.dto;
 
+import java.io.Serializable;
+
 /**
  * 人伤跟踪
  * @author chao
  *
  */
-public class RulePresonTrack {
+public class RulePresonTrack implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	/**	人伤任务类型*/
 	private	String	injuryTaskType;
 	/**	是否有定损权限*/

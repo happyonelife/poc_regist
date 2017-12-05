@@ -1,11 +1,17 @@
 package com.sinosoft.bpm.rule.bean.dto;
 
+import java.io.Serializable;
+
 /**
  * 简易案件信息
  * @author chao
  *
  */
-public class RuleSimpleCase {
+public class RuleSimpleCase implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	/**	是否人伤案件*/
 	private	String	isInjuryCase;
 	/**	是否财产案件*/

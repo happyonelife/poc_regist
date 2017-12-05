@@ -1,12 +1,18 @@
 package com.sinosoft.bpm.rule.bean.dto;
 
+import java.io.Serializable;
+
 
 /**
  * 人伤追加定损
  * @author chao
  *
  */
-public class RulePersonAppendLossApproval {
+public class RulePersonAppendLossApproval implements Serializable{
+		/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 		/**	定损金额*/
 		private	Double	lossApprovalAmount;
 		/**	人员定损金额*/

@@ -1,11 +1,18 @@
 package com.sinosoft.bpm.rule.bean.dto;
+
+import java.io.Serializable;
+
 /**
  * 公共参数信息
  * @author chao
  *
  */
-public class RuleInputCommon {
+public class RuleInputCommon implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	/**指定处理人*/
 	private String handleCode;
 	/**业务归属机构*/

@@ -1,6 +1,14 @@
 package com.sinosoft.bpm.rule.bean.dto;
 
-public class RuleBigCase {
+import java.io.Serializable;
+
+
+public class RuleBigCase implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	//定损环节手动
 	private String bigCaseType = "";
 

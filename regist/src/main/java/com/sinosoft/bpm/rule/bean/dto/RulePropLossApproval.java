@@ -1,11 +1,17 @@
 package com.sinosoft.bpm.rule.bean.dto;
 
+import java.io.Serializable;
+
 /**
  * 财产定损
  * @author chao
  *
  */
-public class RulePropLossApproval {
+public class RulePropLossApproval implements Serializable{
+		/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 		/**	是否同意核损意见*/
 		private	String	isAgreeVerifyOpinion;
 		/**	定损金额*/

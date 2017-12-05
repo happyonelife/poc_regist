@@ -1,11 +1,17 @@
 package com.sinosoft.bpm.rule.bean.dto;
 
+import java.io.Serializable;
+
 /**
  * 追偿
  * @author chao
  *
  */
-public class RuleReplevy {
+public class RuleReplevy implements Serializable{
+		/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 		/**	应追金额*/
 		private	Double	recoveryAmount;
 		/**	追偿意见*/

@@ -1,10 +1,17 @@
 package com.sinosoft.bpm.rule.bean.dto;
+
+import java.io.Serializable;
+
 /**
  * 重开赔案信息
  * @author chao
  *
  */
-public class RuleReCase {
+public class RuleReCase implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	/**	是否产生单证*/
 	private	String  isCreateCertificate;
 	/**	是否产生调度*/

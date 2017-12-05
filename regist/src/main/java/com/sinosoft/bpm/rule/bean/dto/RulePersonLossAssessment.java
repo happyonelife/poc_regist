@@ -1,11 +1,17 @@
 package com.sinosoft.bpm.rule.bean.dto;
 
+import java.io.Serializable;
+
 /**
  * 人伤核损
  * @author chao
  *
  */
-public class RulePersonLossAssessment {
+public class RulePersonLossAssessment implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	/** 风险等级*/
 	private String riskLevel ;
 	/**	是否小额人伤*/

@@ -1,5 +1,6 @@
 package com.sinosoft.bpm.rule.bean.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +15,11 @@ import com.sinosoft.bpm.rule.bean.dto.TaskType;
  * @author chao
  *
  */
-public class RuleProcessOutputXOM  {
+public class RuleProcessOutputXOM  implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	/**新增任务任务列表*/
 	private List<TaskProp> taskList = new ArrayList<TaskProp>(0);
 	/**同步技能组*/

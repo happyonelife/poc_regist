@@ -1,11 +1,17 @@
 package com.sinosoft.bpm.rule.bean.dto;
 
+import java.io.Serializable;
+
 /**
  * 调度
  * @author chao
  *
  */
-public class RuleSchedule {
+public class RuleSchedule implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String anyPayTaskClassify;//通赔任务分类
 	private String anyPayTaskType;//通赔任务类型
 	private String scheduleTaskClassify ;//调度任务分类

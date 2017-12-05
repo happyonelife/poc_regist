@@ -1,11 +1,17 @@
 package com.sinosoft.bpm.rule.bean.dto;
 
+import java.io.Serializable;
+
 /**
  * 人伤核损
  * @author chao
  *
  */
-public class RulePersonLossVerify{
+public class RulePersonLossVerify implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	/**	是否小额人伤*/
 	private	String	isSmallAmountInjury;
 	/**	人伤任务类型*/

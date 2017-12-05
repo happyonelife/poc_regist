@@ -1,11 +1,17 @@
 package com.sinosoft.bpm.rule.bean.dto;
 
+import java.io.Serializable;
+
 /**
  * 支付
  * @author chao
  *
  */
-public class RulePayment {
+public class RulePayment implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	/**	是否修改支付信息*/
 	private	 String isPaymentModify;
 	/**	是否修改账户名*/

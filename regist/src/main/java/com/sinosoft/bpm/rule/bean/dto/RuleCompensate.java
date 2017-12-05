@@ -1,12 +1,18 @@
 package com.sinosoft.bpm.rule.bean.dto;
 
+import java.io.Serializable;
+
 
 /**
  * 理算
  * @author chao
  *
  */
-public class RuleCompensate {
+public class RuleCompensate implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	/**	人员核赔金额*/
 	private	Double	undwrtAmountAuthority;
 	/**	核赔金额*/

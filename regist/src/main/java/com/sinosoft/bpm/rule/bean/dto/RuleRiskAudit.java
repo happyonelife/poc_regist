@@ -1,5 +1,6 @@
 package com.sinosoft.bpm.rule.bean.dto;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -8,7 +9,11 @@ import java.util.Map;
  * @author chao
  *
  */
-public class RuleRiskAudit {
+public class RuleRiskAudit implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	/**	是否总公司任务*/
 	private	String 	isHeadTask;
 	/**	是否提交调查*/

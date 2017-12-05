@@ -1,5 +1,6 @@
 package com.sinosoft.bpm.rule.bean.dto;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -7,7 +8,11 @@ import java.util.List;
  * Date: 14-4-21
  * Time: 下午3:44
  */
-public class RuleResponse {
+public class RuleResponse implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private List<TaskProp> taskProps;
 	private ProcessProp processProp;
 

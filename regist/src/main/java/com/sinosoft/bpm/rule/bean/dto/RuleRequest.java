@@ -1,9 +1,15 @@
 package com.sinosoft.bpm.rule.bean.dto;
 
+import java.io.Serializable;
+
 /**
  *
  */
-public class RuleRequest {
+public class RuleRequest implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String taskCatalog;
 	private String taskType;
 	private Boolean isBack;

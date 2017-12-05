@@ -1,12 +1,18 @@
 package com.sinosoft.bpm.rule.bean.dto;
 
+import java.io.Serializable;
+
 
 /**
  * User: jason
  * Date: 14-4-21
  * Time: 下午3:47
  */
-public class ProcessProp {
+public class ProcessProp implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String processName;//子流程名称
 	private String businessMainKey;//主业务号
 	private TaskProp taskProp = new TaskProp();//新增任务任务列表

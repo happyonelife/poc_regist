@@ -3,13 +3,19 @@
  */
 package com.sinosoft.bpm.rule.bean.dto;
 
+import java.io.Serializable;
+
 /**
  * 风险信息
  * 
  * @author JinBao
  * 
  */
-public class RuleRiskInfo {
+public class RuleRiskInfo implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	/** 险类*/
 	private String classCode = "";
 	/** 业务节点*/

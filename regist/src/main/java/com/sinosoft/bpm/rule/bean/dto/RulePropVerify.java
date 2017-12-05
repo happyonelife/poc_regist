@@ -1,11 +1,17 @@
 package com.sinosoft.bpm.rule.bean.dto;
 
+import java.io.Serializable;
+
 /**
  * 财产核损
  * @author chao
  *
  */
-public class RulePropVerify {
+public class RulePropVerify implements Serializable{
+		/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 		/**	人员最小核损金额*/
 		private	Double	minVerifyAmountAuthority  ;
 		/**	人员最大核损金额*/

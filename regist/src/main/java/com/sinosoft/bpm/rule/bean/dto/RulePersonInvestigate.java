@@ -1,12 +1,18 @@
 package com.sinosoft.bpm.rule.bean.dto;
 
+import java.io.Serializable;
+
 
 /**
  * 人伤首次调查
  * @author chao
  *
  */
-public class RulePersonInvestigate {
+public class RulePersonInvestigate implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	/**	是否小额人伤*/
 	private	String	isSmallAmountInjury;
 	/**估损金额*/

@@ -1,11 +1,18 @@
 package com.sinosoft.bpm.rule.bean.dto;
+
+import java.io.Serializable;
+
 /**
  * 任务注销信息
  * @author chao
  *
  */
 
-public class RuleTaskCancel {
+public class RuleTaskCancel implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	/**	注销任务分类*/
 	private	String  cancleTaskClassify;
 	/**	注销任务类型*/

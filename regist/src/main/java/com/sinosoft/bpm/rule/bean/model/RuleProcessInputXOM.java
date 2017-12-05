@@ -1,5 +1,6 @@
 package com.sinosoft.bpm.rule.bean.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -63,7 +64,11 @@ import com.sinosoft.bpm.rule.bean.dto.Rulesurvey;
  * @author chaoll
  *
  */
-public class RuleProcessInputXOM {
+public class RuleProcessInputXOM  implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	/**版本号*/
 	private String version ;
 	/**数据存储开关*/

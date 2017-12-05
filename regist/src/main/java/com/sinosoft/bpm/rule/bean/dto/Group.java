@@ -1,7 +1,13 @@
 package com.sinosoft.bpm.rule.bean.dto;
 
+import java.io.Serializable;
 
-public class Group {
+
+public class Group implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	/**	技能组代码*/
 	private	String  groupCode;
 	/**技能组名称*/

@@ -1,11 +1,17 @@
  package com.sinosoft.bpm.rule.bean.dto;
 
+import java.io.Serializable;
+
 /**
  * 结案
  * @author chao
  *
  */
-public class RuleEndCase {
+public class RuleEndCase implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	/**	是否重开*/
 	private	String  isReopen;
 	/**	是否产生集中录入*/

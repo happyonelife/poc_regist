@@ -1,11 +1,16 @@
 package com.sinosoft.bpm.rule.bean.dto;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
 import com.sinosoft.bpm.rule.bean.model.RuleProcessInputXOM;
 
-public class RuleAudit {
+public class RuleAudit implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	/** 非小额案件(车物人)定损,理算完成后，核损，核赔案件的起始任务类型,等其他审核类型*/
 	private String nextAuditTaskType = "";
 	/** 车辆核价下一个任务*/

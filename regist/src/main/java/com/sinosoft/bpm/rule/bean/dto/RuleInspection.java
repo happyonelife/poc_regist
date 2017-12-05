@@ -1,12 +1,18 @@
 package com.sinosoft.bpm.rule.bean.dto;
 
 
+import java.io.Serializable;
+
 /**
  * 质检
  * @author chao
  *
  */
-public class RuleInspection {
+public class RuleInspection implements Serializable{
+		/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 		/**	是否提交总公司审核*/
 		private	String	isSubmitHead ;
 		/**	是否问题案件*/

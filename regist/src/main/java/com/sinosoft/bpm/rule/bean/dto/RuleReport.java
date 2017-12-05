@@ -1,11 +1,17 @@
 package com.sinosoft.bpm.rule.bean.dto;
 
+import java.io.Serializable;
+
 /**
  * 举报
  * @author chao
  *
  */
-public class RuleReport {
+public class RuleReport implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	/**	是否提交调查*/
 	private	String isSubmitInvestigate;
 	/**	是否需要重新调查*/

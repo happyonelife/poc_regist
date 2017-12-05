@@ -1,10 +1,17 @@
 package com.sinosoft.bpm.rule.bean.dto;
+
+import java.io.Serializable;
+
 /**
  * 预赔
  * @author chao
  *
  */
-public class RulePrePay {
+public class RulePrePay implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	/**核赔金额*/
 	private Double undwrtAmount;
 	/**	核赔任务提交方式*/

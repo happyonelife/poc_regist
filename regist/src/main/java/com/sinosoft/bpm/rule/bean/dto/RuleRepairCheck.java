@@ -1,10 +1,17 @@
 package com.sinosoft.bpm.rule.bean.dto;
+
+import java.io.Serializable;
+
 /**
  * 修复验车
  * @author chao
  *
  */
-public class RuleRepairCheck {
+public class RuleRepairCheck implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	/**	定损处理机构*/
 	private	String	lastLossApprovalCom;
 	/**	上一个修复验车审核处理人*/

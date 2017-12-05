@@ -1,12 +1,18 @@
 package com.sinosoft.bpm.rule.bean.dto;
 
+import java.io.Serializable;
+
 
 /**
  * 仲裁
  * @author chao
  *
  */
-public class RuleArbitration {
+public class RuleArbitration implements Serializable{
+		/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 		/**	是否发起仲裁救济*/
 		private	String	isInitiateArbitrationRelief;
 		/**	最高审核级别*/

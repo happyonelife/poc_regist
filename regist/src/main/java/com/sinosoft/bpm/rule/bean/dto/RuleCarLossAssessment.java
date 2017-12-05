@@ -1,12 +1,18 @@
 package com.sinosoft.bpm.rule.bean.dto;
 
+import java.io.Serializable;
+
 
 /**
  * 车辆核损
  * @author chao
  *
  */
-public class RuleCarLossAssessment {
+public class RuleCarLossAssessment implements Serializable{
+		/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 		/**	是否配件审验*/
 		private	String	isPartCheck;
 		/**	是否修复验车*/

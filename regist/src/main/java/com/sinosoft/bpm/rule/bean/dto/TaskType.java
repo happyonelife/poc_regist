@@ -1,9 +1,14 @@
 package com.sinosoft.bpm.rule.bean.dto;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TaskType {
+public class TaskType implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	/**任务类型*/
 	private	String  taskType;
 	/**任务类型名称*/
