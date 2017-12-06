@@ -6,12 +6,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import cn.sinosoft.claim.assem.page.check.SimpleCasePage;
-import cn.sinosoft.claim.base.entity.rulerisk.PrplAutoUndwrtRuleInfoEntity;
-
 import com.sinosoft.bpm.def.Task;
 import com.sinosoft.bpm.rule.bean.dto.RuleAccessoryCheck;
 import com.sinosoft.bpm.rule.bean.dto.RuleAdvance;
+import com.sinosoft.bpm.rule.bean.dto.RuleAnyPay;
 import com.sinosoft.bpm.rule.bean.dto.RuleArbitration;
 import com.sinosoft.bpm.rule.bean.dto.RuleAudit;
 import com.sinosoft.bpm.rule.bean.dto.RuleBigCase;
@@ -55,6 +53,9 @@ import com.sinosoft.bpm.rule.bean.dto.RuleSubrogation;
 import com.sinosoft.bpm.rule.bean.dto.RuleTaskCancel;
 import com.sinosoft.bpm.rule.bean.dto.RuleUndwrt;
 import com.sinosoft.bpm.rule.bean.dto.Rulesurvey;
+
+import cn.sinosoft.claim.assem.page.check.SimpleCasePage;
+import cn.sinosoft.claim.base.entity.rulerisk.PrplAutoUndwrtRuleInfoEntity;
 
 
 
@@ -219,6 +220,9 @@ public class RuleProcessInputXOM  implements Serializable{
 	private String lawReplevyArbitrationFlag = "Y";
 	
 	private RuleCarPriceAndVerify ruleCarPriceAndVerify = new RuleCarPriceAndVerify();
+	
+	/**通赔*/
+	private RuleAnyPay ruleAnyPay = new RuleAnyPay();
 	
 	public String getCurrentTaskPowerLevel() {
 		return currentTaskPowerLevel;
@@ -669,6 +673,12 @@ public class RuleProcessInputXOM  implements Serializable{
 	}
 	public void setLawReplevyArbitrationFlag(String lawReplevyArbitrationFlag) {
 		this.lawReplevyArbitrationFlag = lawReplevyArbitrationFlag;
+	}
+	public RuleAnyPay getRuleAnyPay() {
+		return ruleAnyPay;
+	}
+	public void setRuleAnyPay(RuleAnyPay ruleAnyPay) {
+		this.ruleAnyPay = ruleAnyPay;
 	}
 	
 }

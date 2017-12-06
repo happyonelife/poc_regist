@@ -47,6 +47,8 @@ public class RuleProcessOutputXOM  implements Serializable{
 	/**是否自动理算*/
 	private String isAutoCompensate="N";
 	/** 风险信息*/
+	/**是否具有通赔定核损金额权限*/
+	private String isHasAnyPaySubmitPermission = "N";
 	private List<RuleRiskInfo> ruleRiskInfoLists = new ArrayList<RuleRiskInfo>();  
 	
 	public List<RuleRiskInfo> getRuleRiskInfoLists() {
@@ -521,6 +523,12 @@ public class RuleProcessOutputXOM  implements Serializable{
 		}else{
 			this.reason += "|"+reason;
 		}
+	}
+	public String getIsHasAnyPaySubmitPermission() {
+		return isHasAnyPaySubmitPermission;
+	}
+	public void setIsHasAnyPaySubmitPermission(String isHasAnyPaySubmitPermission) {
+		this.isHasAnyPaySubmitPermission = isHasAnyPaySubmitPermission;
 	}
 	
 	
