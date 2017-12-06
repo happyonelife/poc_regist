@@ -1,0 +1,143 @@
+package com.sinosoft.bpm.def.cfg;
+
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
+
+
+import com.sinosoft.bpm.ExecutionContext;
+import com.sinosoft.bpm.def.Task;
+
+public class TaskDef {
+
+	public static final int PRIORITY_HIGHEST = 1;
+	public static final int PRIORITY_HIGH = 2;
+	public static final int PRIORITY_NORMAL = 3;
+	public static final int PRIORITY_LOW = 4;
+	public static final int PRIORITY_LOWEST = 5;
+
+	private String taskName;
+	private String taskType;
+	private String taskCatalog;
+	private String catalogName;
+	private String autoCompleteAction;
+	private String endCallbackHandler;
+	private String createCallbackHandler;
+	private String receiveable;
+	private String powerTaskCode;
+	private int priority;
+	private String remark;
+	private String timeout;
+    private String vfield8;
+	private String timeoutAction;
+	private int repeatCount;
+	private String duration;
+	private String nodeLevel;
+	private String showIndex;
+	private List<Event> events;
+
+	private Map<String, Event> eventMap = new HashMap<String, Event>();
+
+	public TaskDef() {
+	}
+
+	public TaskDef(String name) {
+		this.taskType = name;
+	}
+
+	// event types
+	// //////////////////////////////////////////////////////////////
+
+	static final String[] supportedEventTypes = {Event.EVENTTYPE_TASK_CREATE, Event.EVENTTYPE_TASK_ASSIGN,
+			Event.EVENTTYPE_TASK_START, Event.EVENTTYPE_TASK_END};
+
+	public String[] getSupportedEventTypes() {
+		return supportedEventTypes;
+	}
+
+	public void setEvents(List<Event> events) {
+		this.events = events;
+		for (Event event : events) {
+			eventMap.put(event.getEventName(), event);
+		}
+	}
+
+	public Event getEvent(String eventType) {
+		return eventMap.get(eventType);
+	}
+
+	/**
+	 * 触发任务动作事件
+	 * @param eventType
+	 * @param executionContext
+	 */
+	public void fireEvent(String eventType, ExecutionContext executionContext) {
+		Task task = executionContext.getTask();//获得当前任务实例
+		Event event = task.getTaskDef().getEvent(eventType);//获得当前任务模板对应的事件类型的事件
+		try {
+			if (event != null && !event.getActions().isEmpty()) {
+				executeActions(event.getActions(), executionContext);//执行事件的所有动作
+			}
+		} finally {
+		}
+	}
+
+	/**
+	 * 执行action集合中的动作
+	 * @param actions action集合
+	 * @param executionContext
+	 */
+	@SuppressWarnings("rawtypes")
+	void executeActions(List actions, ExecutionContext executionContext) {
+		if (actions != null) {
+			Iterator iter = actions.iterator();//迭代所有动作
+			while (iter.hasNext()) {
+				Action action = (Action) iter.next();
+				executeAction(action, executionContext);//执行动作
+			}
+		}
+	}
+
+	/**
+	 * 执行action中的动作
+	 * @param action 一个具体的action
+	 * @param executionContext
+	 */
+	public void executeAction(Action action, ExecutionContext executionContext) {
+
+		// create action log
+//		ActionLog actionLog = new ActionLog(action);
+//		token.startCompositeLog(actionLog);
+
+		// if this is an action being executed in an event,
+		// the token needs to be locked.  if this is an action
+		// being executed as the node behaviour or if the token
+		// is already locked, the token doesn't need to be locked.
+
+		try {
+			//更新执行上下文
+			executionContext.setAction(action);
+
+			//执行action
+			log.debug("executing action '" + action + "'");
+			action.execute(executionContext);
+
+
+		} catch (Exception exception) {
+			// NOTE that Error's are not caught because that might halt the JVM and mask the original Error.
+
+			// log the action exception
+//			actionLog.setException(exception);
+
+			// if an exception handler is available
+//			raiseException(exception, executionContext);
+
+		} finally {
+			executionContext.setAction(null);
+//			token.endCompositeLog();
+		}
+	}
+
+}

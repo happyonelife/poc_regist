@@ -1,0 +1,190 @@
+package com.sinosoft.bpm.def;
+
+import java.beans.BeanInfo;
+import java.beans.IntrospectionException;
+import java.beans.Introspector;
+import java.beans.MethodDescriptor;
+import java.lang.reflect.Method;
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.persistence.TableGenerator;
+
+
+import com.sinosoft.bpm.def.type.BpmConStant;
+
+@Entity
+@Table(name = "T_EDF_PROCESS")
+public class Process{
+
+	/**
+	 * 流程id
+	 */
+	@Id
+	@SequenceGenerator(name="ProcessSequence",allocationSize = 1,sequenceName="SEQ_BPM_PROCESS")
+	@GeneratedValue(generator="ProcessSequence",strategy=GenerationType.SEQUENCE)
+	@Column(name="processId",nullable=false,length=19)
+	private Long processId;
+	/**
+	 * 流程名称
+	 */
+	@Column(name="processName",nullable=true,length=255)
+	private String processName;
+	/**
+	 * 流程版本号
+	 */
+	@Column(name="version",nullable=true,length=20)
+	private String version;
+	/**
+	 * 流程发起人
+	 */
+	@Column(name="startUserId",nullable=true,length=255)
+	private String startUserId;
+	/**
+	 * 主业务号
+	 */
+	@Column(name="businessMainKey",nullable=true,length=255)
+	private String businessMainKey;
+	/**
+	 * 记录流程开始任务id
+	 */
+	@Column(name="startTaskId",nullable=true,length=19)
+	private Long startTaskId;
+	/**
+	 * 记录流程结束任务id
+	 */
+	@Column(name="endTaskId",nullable=true,length=19)
+	private Long endTaskId;
+	/**
+	 * 记录流程开始时间
+	 */
+	private Date startTime;
+	/**
+	 * 记录流程结束时间
+	 */
+	private Date endTime;
+	/**
+	 * 开启 1, 关闭 0 , 暂停 2
+	 */
+	@Column(name="processStatus",nullable=true,length=255)
+	private String processStatus;
+	/**
+	 * 是否子流程
+	 */
+	@Column(name="isSubProcess",nullable=true,length=1)
+	protected String isSubProcess = BpmConStant.NO;
+	/**
+	 * 记录流程创建时间
+	 */
+	private Date createTime;
+	/**
+	 * 记录流程最后更新时间
+	 */
+	private Date lastUpdateTime;
+	/**
+	 * 记录父流程id
+	 */
+	@Column(name="parentId",nullable=true,length=19)
+	private Long parentId;
+	/**
+	 * 注销标志
+	 */
+	@Column(name="cancel",nullable=true,length=1)
+	private String cancel;
+	public Long getProcessId() {
+		return processId;
+	}
+	public void setProcessId(Long processId) {
+		this.processId = processId;
+	}
+	public String getProcessName() {
+		return processName;
+	}
+	public void setProcessName(String processName) {
+		this.processName = processName;
+	}
+	public String getVersion() {
+		return version;
+	}
+	public void setVersion(String version) {
+		this.version = version;
+	}
+	public String getStartUserId() {
+		return startUserId;
+	}
+	public void setStartUserId(String startUserId) {
+		this.startUserId = startUserId;
+	}
+	public String getBusinessMainKey() {
+		return businessMainKey;
+	}
+	public void setBusinessMainKey(String businessMainKey) {
+		this.businessMainKey = businessMainKey;
+	}
+	public Long getStartTaskId() {
+		return startTaskId;
+	}
+	public void setStartTaskId(Long startTaskId) {
+		this.startTaskId = startTaskId;
+	}
+	public Long getEndTaskId() {
+		return endTaskId;
+	}
+	public void setEndTaskId(Long endTaskId) {
+		this.endTaskId = endTaskId;
+	}
+	public Date getStartTime() {
+		return startTime;
+	}
+	public void setStartTime(Date startTime) {
+		this.startTime = startTime;
+	}
+	public Date getEndTime() {
+		return endTime;
+	}
+	public void setEndTime(Date endTime) {
+		this.endTime = endTime;
+	}
+	public String getProcessStatus() {
+		return processStatus;
+	}
+	public void setProcessStatus(String processStatus) {
+		this.processStatus = processStatus;
+	}
+	public String getIsSubProcess() {
+		return isSubProcess;
+	}
+	public void setIsSubProcess(String isSubProcess) {
+		this.isSubProcess = isSubProcess;
+	}
+	public Date getCreateTime() {
+		return createTime;
+	}
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
+	public Date getLastUpdateTime() {
+		return lastUpdateTime;
+	}
+	public void setLastUpdateTime(Date lastUpdateTime) {
+		this.lastUpdateTime = lastUpdateTime;
+	}
+	public Long getParentId() {
+		return parentId;
+	}
+	public void setParentId(Long parentId) {
+		this.parentId = parentId;
+	}
+	public String getCancel() {
+		return cancel;
+	}
+	public void setCancel(String cancel) {
+		this.cancel = cancel;
+	}
+}

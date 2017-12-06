@@ -1,5 +1,6 @@
 package cn.sinosoft.processrule.helper;
 
+import java.io.Serializable;
 import java.lang.reflect.Method;
 
 import com.sinosoft.bpm.rule.bean.dto.RuleInputCommon;
@@ -10,12 +11,19 @@ import cn.sinosoft.processrule.helper.bean.CheckFields;
 import cn.sinosoft.processrule.helper.bean.ProcessRuleFields;
 import cn.sinosoft.processrule.helper.bean.SyncRuleFields;
 
-public class DealingProcessRuleXOM {
+public class DealingProcessRuleXOM implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private RuleProcessOutputXOM outPutXom = null;
 	private RuleProcessInputXOM inPutXom = null;
 	private CheckFields checkFields = new CheckFields();
 	private ProcessRuleFields ruleFields = new ProcessRuleFields();
 	private SyncRuleFields syncRuleFields = new SyncRuleFields();
+	
+	public DealingProcessRuleXOM() {
+	}
 	
 	
 

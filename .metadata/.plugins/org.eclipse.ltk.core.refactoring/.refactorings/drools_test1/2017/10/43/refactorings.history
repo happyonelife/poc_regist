@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring accessors="true" comment="Delete 2 elements from project &apos;drools_test1&apos;&#x0D;&#x0A;- Original project: &apos;drools_test1&apos;&#x0D;&#x0A;- Original elements:&#x0D;&#x0A;     dispatchingRuleMainOfCarLossVerifyOfHeadCarLossVerifyOne.bpmn2&#x0D;&#x0A;     dispatchingRuleMainOfPersonLossVerifyOfHeadPersonLossVerifyOne.bpmn2" description="Delete elements" element1="src/main/resources/process/dispatchingRuleMainOfPersonLossVerifyOfHeadPersonLossVerifyOne.bpmn2" element2="src/main/resources/process/dispatchingRuleMainOfCarLossVerifyOfHeadCarLossVerifyOne.bpmn2" elements="0" flags="589830" id="org.eclipse.jdt.ui.delete" resources="2" stamp="1508915160639" subPackages="false" version="1.0"/>
+</session>

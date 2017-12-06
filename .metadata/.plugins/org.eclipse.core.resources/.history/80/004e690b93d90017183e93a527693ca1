@@ -1,0 +1,126 @@
+package com.sinosoft.bpm.def;
+
+import java.beans.BeanInfo;
+import java.beans.IntrospectionException;
+import java.beans.Introspector;
+import java.beans.MethodDescriptor;
+import java.lang.reflect.Method;
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.persistence.TableGenerator;
+
+import lombok.Data;
+
+import com.sinosoft.bpm.def.type.BpmConStant;
+
+@Entity
+@Table(name = "T_EDF_PROCESS")
+@Data
+public class Process{
+
+	/**
+	 * 流程id
+	 */
+	@Id
+	@SequenceGenerator(name="ProcessSequence",allocationSize = 1,sequenceName="SEQ_BPM_PROCESS")
+	@GeneratedValue(generator="ProcessSequence",strategy=GenerationType.SEQUENCE)
+	@Column(name="processId",nullable=false,length=19)
+	private Long processId;
+	/**
+	 * 流程名称
+	 */
+	@Column(name="processName",nullable=true,length=255)
+	private String processName;
+	/**
+	 * 流程版本号
+	 */
+	@Column(name="version",nullable=true,length=20)
+	private String version;
+	/**
+	 * 流程发起人
+	 */
+	@Column(name="startUserId",nullable=true,length=255)
+	private String startUserId;
+	/**
+	 * 主业务号
+	 */
+	@Column(name="businessMainKey",nullable=true,length=255)
+	private String businessMainKey;
+	/**
+	 * 记录流程开始任务id
+	 */
+	@Column(name="startTaskId",nullable=true,length=19)
+	private Long startTaskId;
+	/**
+	 * 记录流程结束任务id
+	 */
+	@Column(name="endTaskId",nullable=true,length=19)
+	private Long endTaskId;
+	/**
+	 * 记录流程开始时间
+	 */
+	private Date startTime;
+	/**
+	 * 记录流程结束时间
+	 */
+	private Date endTime;
+	/**
+	 * 开启 1, 关闭 0 , 暂停 2
+	 */
+	@Column(name="processStatus",nullable=true,length=255)
+	private String processStatus;
+	/**
+	 * 是否子流程
+	 */
+	@Column(name="isSubProcess",nullable=true,length=1)
+	protected String isSubProcess = BpmConStant.NO;
+	/**
+	 * 记录流程创建时间
+	 */
+	private Date createTime;
+	/**
+	 * 记录流程最后更新时间
+	 */
+	private Date lastUpdateTime;
+	/**
+	 * 记录父流程id
+	 */
+	@Column(name="parentId",nullable=true,length=19)
+	private Long parentId;
+	/**
+	 * 注销标志
+	 */
+	@Column(name="cancel",nullable=true,length=1)
+	private String cancel;
+
+
+	public static void main(String[] args){
+		BeanInfo beanInfo = null;
+		try {
+			beanInfo = Introspector.getBeanInfo(Process.class,Object.class);
+		} catch (IntrospectionException e) {
+			e.printStackTrace();
+		}
+		MethodDescriptor[] methodDescriptors = beanInfo.getMethodDescriptors();
+		for (int i = 0; i < methodDescriptors.length; i++) {
+			MethodDescriptor methodDescriptor = methodDescriptors[i];
+			Method method = methodDescriptor.getMethod();
+			String paramName = "";
+			if(method.getName().startsWith("set")){
+				paramName = method.getName().split("set")[1];
+				paramName = paramName.replaceFirst(paramName.substring(0,1), paramName.substring(0,1).toLowerCase());
+
+				System.out.println(method.toString().substring(0,method.toString().length()-1) +" "+paramName+");");
+			}else{
+				System.out.println(method+";");
+			}
+		}
+	}
+}

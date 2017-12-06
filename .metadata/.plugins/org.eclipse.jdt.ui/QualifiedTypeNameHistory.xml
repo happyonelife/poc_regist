@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="java.util.Date"/>
+<fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
+<fullyQualifiedTypeName name="org.kie.api.runtime.KieSession"/>
+<fullyQualifiedTypeName name="java.lang.Thread"/>
+<fullyQualifiedTypeName name="com.sinosoft.bpm.def.cfg.TaskDef"/>
+<fullyQualifiedTypeName name="com.sinosoft.bpm.rule.bean.model.RuleProcessInputXOM"/>
+<fullyQualifiedTypeName name="com.sinosoft.bpm.rule.bean.model.RuleProcessOutputXOM"/>
+<fullyQualifiedTypeName name="cn.sinosoft.processrule.helper.DealingProcessRuleXOM"/>
+<fullyQualifiedTypeName name="java.io.Serializable"/>
+</qualifiedTypeNameHistroy>

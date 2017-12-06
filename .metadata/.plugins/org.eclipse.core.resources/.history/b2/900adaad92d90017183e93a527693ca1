@@ -1,0 +1,586 @@
+
+package com.sinosoft.bpm.def;
+
+import java.lang.reflect.Field;
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.persistence.Transient;
+import javax.persistence.Version;
+
+import com.sinosoft.bpm.def.cfg.TaskDef;
+import com.sinosoft.bpm.def.type.BpmConStant;
+import com.sinosoft.bpm.def.type.BpmConStant.TaskStatus;
+
+
+@Entity
+@Table(name = "T_EDF_TASK" )
+public class Task{
+
+	@Id
+	@SequenceGenerator(name="TaskSequence",allocationSize = 1,sequenceName="SEQ_BPM_TASK")
+	@GeneratedValue(generator="TaskSequence",strategy=GenerationType.SEQUENCE)
+	/**
+	 * 任务id
+	 */
+	@Column(name ="taskId",nullable=false,length=19)
+	private Long taskId;
+	/**
+	 * 任务类型
+	 */ 
+	@Column(name ="taskType",nullable=true,length=255)
+	private String taskType;
+	/**
+	 * 任务代码--可以删除
+	 */
+	@Column(name ="taskCode",nullable=true,length=255)
+	private String taskCode;
+	/**
+	 * 任务分类
+	 */
+	@Column(name ="taskCatalog",nullable=true,length=255)
+	private String taskCatalog;
+	/**
+	 * 任务拥有者(委托他人处理时记录最初任务归属)
+	 */
+	@Column(name ="owner",nullable=true,length=255)
+	private String owner;
+	/**
+	 * 任务备注
+	 */
+	@Column(name ="remark",nullable=true,length=255)
+	private String remark;
+	/**
+	 * 任务备注时间
+	 */
+	private Date remarkTime;
+	/**
+	 * 任务开始时间
+	 */
+	private Date startTime;
+	/**
+	 * 任务结束时间
+	 */
+	private Date endTime;                                    
+	/**
+	 *最终任务处理人                 
+	 */
+	@Column(name ="endUser",nullable=true,length=255)
+	private String endUser; 
+	/**
+	 * 任务操作时间
+	 */
+	private Date operateTime;
+	/**
+	 * 任务创建时间
+	 */
+	private Date createTime;
+	/**
+	 * 任务认领时间
+	 */
+	private Date assignTime;
+	/**
+	 * 任务超期时间
+	 */
+	protected Date dueDate;
+	/**
+	 * 任务状态
+	 */
+	@Column(name ="taskStatus",nullable=true,length=255)
+	private String taskStatus;
+	/**
+	 * 暂停时间--目前不提供暂停功能，字段先预留着
+	 */
+	private Date suspendTime;
+	/**
+	 * 紧急程度
+	 */
+	@Column(name ="priority",nullable=false,length=10)
+	private Integer priority = TaskDef.PRIORITY_NORMAL;
+	/**
+	 * 是否被回退的任务
+	 */
+	@Column(name ="back",nullable=true,length=1)
+	private String back = BpmConStant.NO;
+	/**
+	 * 是否发起回退操作的任务
+	 */
+	@Column(name ="startBack",nullable=true,length=1)
+	private String startBack = BpmConStant.NO;
+	/**
+	 * 是否自动结束
+	 */
+	@Column(name ="autoend",nullable=true,length=1)
+	private String autoend = BpmConStant.NO;
+	/**
+	 * 是否注销标志位
+	 */
+	@Column(name ="cancel",nullable=true,length=1)
+	private String cancel = BpmConStant.TASK_NORMAL;
+	/**
+	 * 任务的结点类型
+	 */
+	@Column(name ="nodeType",nullable=true,length=255)
+	private String nodeType;
+	/**
+	 * 任务所属流程id
+	 */
+	@Column(name ="processId",nullable=true,length=19)
+	protected Long processId;
+	/**
+	 * 父任务(分支中所有结点的父结点均为分支开始结点)
+	 */
+	@Column(name ="parentId",nullable=true,length=19)
+	private Long parentId;
+	/**
+	 * 前一任务(记录该任务是由哪个任务触发创建的)
+	 */
+	@Column(name ="prevTaskId",nullable=true,length=19)
+	private Long prevTaskId;
+
+	/**
+	 * 任务完成处理类--可以删除（放在定义类taskdef）
+	 */
+	@Column(name ="completeAction",nullable=true,length=255)
+	private String completeAction;
+	
+	/****** 定时任务字段 ********/
+	/**
+	 * 超时时长(单位：分钟)
+	 */
+	@Column(name ="timeout",nullable=true,length=255)
+	private String timeout;
+	/**
+	 * 超时处理类--可以删除
+	 */
+	@Column(name ="timeoutAction",nullable=true,length=255)
+	private String timeoutAction;
+	/**
+	 * 执行时间
+	 */
+	private Date execTime;
+	/**
+	 * 重复次数
+	 */
+	@Column(name ="repeatCount",nullable=true,length=10)
+	private Integer repeatCount;
+	/**
+	 * 间隔时长(如:5天，2小时，10分)
+	 */
+	@Column(name ="duration",nullable=true,length=255)
+	private String duration;
+	
+	/**
+	 * 任务改派移交标志
+	 * 1-改派
+	 * 2-移交
+	 */
+	@Column(name ="reassignFlag",nullable=true,length=1)
+	private String reassignFlag;                                         
+	/**
+	 *任务操作类型--可以删除                       
+	 */
+	@Column(name ="taskAction",nullable=true,length=255)
+	private String taskAction;                                        
+	/**
+	 *会签任务结果--目前的功能暂不用会签，预留                   
+	 */
+	@Column(name ="signResult",nullable=true,length=1)
+	private String signResult;                                             
+	/**
+	 *会签任务结果处理方式 --目前的功能暂不用会签，预留   
+	 */
+	@Column(name ="signResultType",nullable=true,length=255)
+	private String signResultType;                                         
+	/**
+	 *会签完成需要完成的任务数量 --目前的功能暂不用会签，预留        
+	 */
+	@Column(name ="signCompleteNum",nullable=true,length=10)
+	private Integer signCompleteNum;                                       
+	/**
+	 *任务锁定人                         
+	 */
+	@Column(name ="lockOwner",nullable=true,length=255)
+	private String lockOwner;                                              
+	/**
+	 *锁定时间                           
+	 */
+	private Date lockTime;                                                 
+	/**
+	 *流程创建时间                       
+	 */
+	private Date processCreateTime;                                        
+	/**
+	 *代理权限级别--可以删除                       
+	 */
+	@Column(name ="authLevel",nullable=true,length=10)
+	private Integer authLevel;                                             
+	/**
+	 *个人队列                           
+	 */
+	@Column(name ="inBox",nullable=true,length=255)
+	private String inBox;                                                  
+	/**
+	 *公共队列
+	 */
+	@Column(name ="queueName",nullable=true,length=255)
+	private String queueName;      
+	
+	/**
+	 * 标志
+	 */
+	@Version
+	@Column(name ="sign",nullable=true,length=5)
+	private int sign;
+	
+
+	/****** 固定业务字段 ********/                                             
+	/**
+	 *主业务号                       
+	 */
+	@Column(name ="businessMainKey",nullable=true,length=30)
+	private String businessMainKey;                                        
+	/**
+	 *代理业务标识号                     
+	 */
+	@Column(name ="businessKey",nullable=true,length=40)
+	private String businessKey;                                 
+	/**
+	 *业务轨迹表ID                     
+	 */
+	@Column(name ="trackId",nullable=true,length=40)
+	private String trackId;
+	/**
+	 *业务状态
+	 * 0 未处理;1 正处理;2 完成;3 回退;4 提交通赔; 5 申请改派;6 撒销;7 申请注销
+	 */
+	@Column(name ="businessStatus",nullable=true,length=1)
+	private String businessStatus;
+	/**
+	 *受理标志                           
+	 */
+	@Column(name ="acceptFlag",nullable=true,length=255)
+	private String acceptFlag;                                           
+	/**
+	 *通赔调度任务标志
+	 */
+	@Column(name ="anyPayFlag",nullable=true,length=1)
+	private String anyPayFlag = BpmConStant.NO;		                                           
+	/**
+	 *任务涉及(车)标的集                 
+	 */
+	@Column(name ="taskCarItems",nullable=true,length=1000)
+	private String taskCarItems;                                           
+	/**
+	 *任务涉及(财)标的集                 
+	 */
+	@Column(name ="taskPropItems",nullable=true,length=1000)
+	private String taskPropItems;                                          
+	/**
+	 *任务涉及(人)标的集
+	 */
+	@Column(name ="taskPersonItems",nullable=true,length=1000)
+	private String taskPersonItems;                                        
+	/**
+	 *承保业务归属机构                   
+	 */
+	@Column(name ="comCode",nullable=true,length=8)
+	private String comCode;                                            
+	/**
+	 *险种代码                               
+	 */
+	@Column(name ="riskCode",nullable=true,length=4)
+	private String riskCode ;                                    
+	/**
+	 *险类代码                               
+	 */
+	@Column(name ="classCode",nullable=true,length=4)
+	private String classCode ;
+	/**
+	 * 
+	 *报案号                             
+	 */
+	@Column(name ="registNo",nullable=true,length=255)
+	private String registNo;
+	/**
+	 *保单号                             
+	 */
+	@Column(name ="policyNo",nullable=true,length=255)
+	private String policyNo;                                               
+	/**
+	 *事故号                             
+	 */
+	@Column(name ="accidentNo",nullable=true,length=30)
+	private String accidentNo;
+	/**
+	 *客户号                             
+	 */
+	@Column(name ="customerNo",nullable=true,length=255)
+	private Integer customerNo;                                           
+	/**
+	 *理赔服务机构                       
+	 */
+	@Column(name ="claimCom",nullable=true,length=8)
+	private String claimCom;                                                                                    
+	@Temporal(TemporalType.DATE)                                           
+	/**
+	 *报案日期                      
+	 */
+	private Date reportDate;                                               
+	/**
+	 *出险起始时间                       
+	 */
+	private Date damageStartTime;                                          
+	/**
+	 *出险终止时间                       
+	 */
+	private Date damageEndTime;                                            
+	/**
+	 *案件类型                           
+	 */
+	@Column(name ="caseType",nullable=true,length=1)
+	private String caseType;                                               
+	/**
+	 *事故类型                           
+	 */
+	@Column(name ="accidentType",nullable=true,length=3)
+	private String accidentType;                                           
+	/**
+	 *事故处理类型                       
+	 */
+	@Column(name ="optionType",nullable=true,length=1)
+	private String optionType;                                            
+	/**
+	 *是否重大案件标识                    
+	 */
+	@Column(name ="isMajorCase",nullable=true,length=2)
+	private String isMajorCase;                                      
+	/**
+	 *车牌号码                                 
+	 */
+	@Column(name ="licenseNo",nullable=true,length=255)
+	private String licenseNo;                                      
+	/**
+	 *是否通赔案件                               
+	 */
+	@Column(name ="isAnyPay",nullable=true,length=1)
+	private String isAnyPay = BpmConStant.NO;                                          
+	/**
+	 *被保险人名称                            
+	 */
+	@Column(name ="insuredName",nullable=true,length=255)
+	private String insuredName;                                   
+	/**
+	 *项目                                        
+	 */
+	@Column(name ="project",nullable=true,length=255)
+	private String project;                                            
+	/**
+	 *客户类型                               
+	 */
+	@Column(name ="customerType",nullable=true,length=255)
+	private String customerType;                                        
+	/**
+	 *客户等级                              
+	 */
+	@Column(name ="customerLevel",nullable=true,length=255)
+	private String customerLevel;
+	/**
+	 * 是否超权限
+	 */
+	@Column(name ="overPower",nullable=true,length=1)
+	private String overPower = BpmConStant.NO;
+
+	/*******  预留动态映射字段  **********/
+	@Column(name ="vfield1",nullable=true,length=255)
+	private String vfield1;
+	@Column(name ="vfield2",nullable=true,length=255)
+	private String vfield2;
+	@Column(name ="vfield3",nullable=true,length=255)
+	private String vfield3;
+	@Column(name ="vfield4",nullable=true,length=255)
+	private String vfield4;
+	@Column(name ="vfield5",nullable=true,length=255)
+	private String vfield5;
+	@Column(name ="vfield6",nullable=true,length=255)
+	private String vfield6;
+	@Column(name ="vfield7",nullable=true,length=255)
+	private String vfield7;
+	@Column(name ="vfield8",nullable=true,length=255)
+	private String vfield8;
+	@Column(name ="vfield9",nullable=true,length=255)
+	private String vfield9;
+	@Column(name ="vfield10",nullable=true,length=255)
+	private String vfield10;
+	@Column(name ="vfield11",nullable=true,length=255)
+	private String vfield11;
+	@Column(name ="vfield12",nullable=true,length=255)
+	private String vfield12;
+	@Column(name ="vfield13",nullable=true,length=255)
+	private String vfield13;
+	@Column(name ="vfield14",nullable=true,length=255)
+	private String vfield14;
+	@Column(name ="vfield15",nullable=true,length=255)
+	private String vfield15;
+	@Column(name ="vfield16",nullable=true,length=255)
+	private String vfield16;
+	@Column(name ="vfield17",nullable=true,length=255)
+	private String vfield17;
+	@Column(name ="vfield18",nullable=true,length=255)
+	private String vfield18;
+	@Column(name ="vfield19",nullable=true,length=255)
+	private String vfield19;
+	@Column(name ="vfield20",nullable=true,length=255)
+	private String vfield20;
+	@Column(name ="vfield21",nullable=true,length=255)
+	private String vfield21;
+	@Column(name ="vfield22",nullable=true,length=255)
+	private String vfield22;
+	@Column(name ="vfield23",nullable=true,length=255)
+	private String vfield23;
+	@Column(name ="vfield24",nullable=true,length=255)
+	private String vfield24;
+	@Column(name ="vfield25",nullable=true,length=255)
+	private String vfield25;
+	@Column(name ="vfield26",nullable=true,length=255)
+	private String vfield26;
+	@Column(name ="vfield27",nullable=true,length=255)
+	private String vfield27;
+	@Column(name ="vfield28",nullable=true,length=255)
+	private String vfield28;
+	@Column(name ="vfield29",nullable=true,length=255)
+	private String vfield29;
+	@Column(name ="vfield30",nullable=true,length=800)
+	private String vfield30;
+	@Column(name ="vfield31",nullable=true,length=255)
+	private String vfield31;
+	@Column(name ="vfield32",nullable=true,length=255)
+	private String vfield32;
+	@Column(name ="vfield33",nullable=true,length=255)
+	private String vfield33;
+	@Column(name ="vfield34",nullable=true,length=255)
+	private String vfield34;
+	@Column(name ="vfield35",nullable=true,length=255)
+	private String vfield35;
+	@Column(name ="vfield36",nullable=true,length=255)
+	private String vfield36;
+	@Column(name ="vfield37",nullable=true,length=255)
+	private String vfield37;
+	@Column(name ="vfield38",nullable=true,length=255)
+	private String vfield38;
+	@Column(name ="vfield39",nullable=true,length=255)
+	private String vfield39;
+	@Column(name ="vfield40",nullable=true,length=255)
+	private String vfield40;
+	private Date dfield1;
+	private Date dfield2;
+	private Date dfield3;
+	private Date dfield4;
+	private Date dfield5;
+	private Date dfield6;
+	private Date dfield7;
+	private Date dfield8;
+	private Date dfield9;
+	private Date dfield10;
+	private Double nfield1;
+	private Double nfield2;
+	private Double nfield3;
+	private Double nfield4;
+	private Double nfield5;
+	private Double nfield6;
+	private Double nfield7;
+	private Double nfield8;
+	private Double nfield9;
+	private Double nfield10;
+	private Double nfield11;
+	private Double nfield12;
+	private Double nfield13;
+	private Double nfield14;
+	private Double nfield15;
+
+	/**
+	 * 关联的任务定义
+	 */
+	@Transient
+	protected TaskDef taskDef;
+	
+	public Task() {
+	}
+
+	public Task(String taskName) {
+		this.taskType = taskName;
+	}
+
+	public Task(String taskName, String userId) {
+		this.taskType = taskName;
+		this.inBox = userId;
+	}
+
+	public void setTaskDef(TaskDef taskDef) {
+		this.taskDef = taskDef;
+	}
+
+	public boolean isSuspended() {
+		return TaskStatus.STATUS_SUSPEND.equals(taskStatus);
+	}
+
+	public void setSuspended(boolean isSuspended) {
+		this.taskStatus = isSuspended?TaskStatus.STATUS_SUSPEND:TaskStatus.STATUS_RUNING;
+	}
+
+	public boolean isFinish() {
+		return TaskStatus.STATUS_COMPLETE.equals(taskStatus);
+	}
+
+	public void finish() {
+		this.taskStatus = TaskStatus.STATUS_COMPLETE;
+	}
+	public boolean hasCancel() {
+		if(null == this.cancel){
+			return false;
+		}else{
+			if(BpmConStant.TASK_ALLCANCEL.equals(this.cancel) || BpmConStant.TASK_CANCEL.equals(this.cancel)){
+				return true;
+			}else{
+				return false;
+			}
+		}
+	}
+	
+	public String getIsMajorCase() {
+		return isMajorCase;
+	}
+
+	public void setIsMajorCase(String isMajorCase) {
+		this.isMajorCase = isMajorCase;
+	}
+
+	public Boolean isMajorCase(){
+		Boolean result = false;
+		if(isMajorCase == null){
+			return null;
+		}else{
+			result = isMajorCase.equals("Y")?true:false;
+			return result;
+		}
+	}
+
+	public void setSuspendTime(Date suspendTime) {
+		this.suspendTime = suspendTime;
+	}
+	public String getAcceptFlag(){
+		return this.acceptFlag;
+	}
+	public void setAcceptFlag(String acceptFlag){
+		this.acceptFlag = acceptFlag;
+	}
+}
+

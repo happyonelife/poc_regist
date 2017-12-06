@@ -1,0 +1,36 @@
+package test;
+
+import org.kie.api.KieServices;
+import org.kie.api.runtime.KieContainer;
+import org.kie.api.runtime.KieSession;
+
+import com.sinosoft.bpm.rule.bean.model.RuleProcessInputXOM;
+import com.sinosoft.bpm.rule.bean.model.RuleProcessOutputXOM;
+
+import cn.sinosoft.processrule.helper.DealingProcessRuleXOM;
+
+/**
+ * This is a sample file to launch a process.
+ */
+public class ProcessTest {
+
+    public static final void main(String[] args) {
+        try {
+            // load up the knowledge base
+	        KieServices ks = KieServices.Factory.get();
+    	    KieContainer kContainer = ks.getKieClasspathContainer();
+        	KieSession kSession = kContainer.newKieSession("ksession-regist1");
+        	RuleProcessInputXOM in = new RuleProcessInputXOM();
+        	RuleProcessOutputXOM ou = new RuleProcessOutputXOM();
+        	DealingProcessRuleXOM d = new DealingProcessRuleXOM(ou, in);
+        	kSession.insert(in);
+        	kSession.insert(ou);//ruleXOMHelper
+        	kSession.setGlobal("ruleXOMHelper", d);
+            // start a new process instance
+            kSession.startProcess("registprocess");
+        } catch (Throwable t) {
+            t.printStackTrace();
+        }
+    }
+
+}

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<definitions id="Definition"
+             targetNamespace="http://www.jboss.org/drools"
+             typeLanguage="http://www.java.com/javaTypes"
+             expressionLanguage="http://www.mvel.org/2.0"
+             xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd"
+             xmlns:g="http://www.jboss.org/drools/flow/gpd"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+             xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+             xmlns:tns="http://www.jboss.org/drools">
+
+  <process processType="Private" isExecutable="true" id="businessRuleMainCarLossApproval" name="businessRuleMainCarLossApproval" tns:packageName="com.sinosoft.businessrule" >
+
+    <extensionElements>
+     <tns:import name="com.sinosoft.bpm.rule.bean.model.RuleProcessOutputXOM" />
+     <tns:import name="com.sinosoft.bpm.rule.bean.model.RuleProcessInputXOM" />
+     <tns:global identifier="ruleXOMHelper" type="cn.sinosoft.processrule.helper.DealingProcessRuleXOM" />
+    </extensionElements>
+    <!-- nodes -->
+    <startEvent id="_jbpm-unique-21" name="Start"  isInterrupting="false">
+    </startEvent>
+    <exclusiveGateway id="_jbpm-unique-22" name="Gateway" gatewayDirection="Diverging" >
+    </exclusiveGateway>
+    <businessRuleTask id="_jbpm-unique-23" name="是否简易案件" g:ruleFlowGroup="businessRuleMainCarLossApprovalBusinessCode1" >
+      <ioSpecification>
+        <inputSet>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+    </businessRuleTask>
+    <businessRuleTask id="_jbpm-unique-24" name="是否自动理算" g:ruleFlowGroup="businessRuleMainCarLossApprovalBusinessCode2" >
+      <ioSpecification>
+        <inputSet>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+    </businessRuleTask>
+    <exclusiveGateway id="_jbpm-unique-25" name="Gateway" gatewayDirection="Converging" >
+    </exclusiveGateway>
+    <endEvent id="_jbpm-unique-26" name="End" >
+        <terminateEventDefinition />
+    </endEvent>
+
+    <!-- connections -->
+    <sequenceFlow id="_jbpm-unique-21-_jbpm-unique-22" sourceRef="_jbpm-unique-21" targetRef="_jbpm-unique-22" />
+    <sequenceFlow id="_jbpm-unique-22-_jbpm-unique-23" sourceRef="_jbpm-unique-22" targetRef="_jbpm-unique-23" name="constraint" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" >return ruleXOMHelper.inPutXom.ruleInputCommon.businessCode.equals("1");</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_jbpm-unique-22-_jbpm-unique-24" sourceRef="_jbpm-unique-22" targetRef="_jbpm-unique-24" name="constraint" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" >return ruleXOMHelper.inPutXom.ruleInputCommon.businessCode.equals("2");</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_jbpm-unique-23-_jbpm-unique-25" sourceRef="_jbpm-unique-23" targetRef="_jbpm-unique-25" />
+    <sequenceFlow id="_jbpm-unique-24-_jbpm-unique-25" sourceRef="_jbpm-unique-24" targetRef="_jbpm-unique-25" />
+    <sequenceFlow id="_jbpm-unique-22-_jbpm-unique-25" sourceRef="_jbpm-unique-22" targetRef="_jbpm-unique-25" name="constraint" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" >return !(ruleXOMHelper.inPutXom.ruleInputCommon.businessCode.equals("2")||
+ruleXOMHelper.inPutXom.ruleInputCommon.businessCode.equals("1"));</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_jbpm-unique-25-_jbpm-unique-26" sourceRef="_jbpm-unique-25" targetRef="_jbpm-unique-26" />
+
+  </process>
+
+  <bpmndi:BPMNDiagram>
+    <bpmndi:BPMNPlane bpmnElement="businessRuleMainCarLossApproval" >
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-21" >
+        <dc:Bounds x="364" y="10" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-22" >
+        <dc:Bounds x="364" y="82" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-23" >
+        <dc:Bounds x="447" y="145" width="80" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-24" >
+        <dc:Bounds x="252" y="145" width="80" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-25" >
+        <dc:Bounds x="369" y="210" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-26" >
+        <dc:Bounds x="371" y="286" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-21-_jbpm-unique-22" >
+        <di:waypoint x="388" y="34" />
+        <di:waypoint x="388" y="106" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-22-_jbpm-unique-23" >
+        <di:waypoint x="388" y="106" />
+        <di:waypoint x="486" y="106" />
+        <di:waypoint x="487" y="169" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-22-_jbpm-unique-24" >
+        <di:waypoint x="388" y="106" />
+        <di:waypoint x="291" y="106" />
+        <di:waypoint x="292" y="169" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-23-_jbpm-unique-25" >
+        <di:waypoint x="487" y="169" />
+        <di:waypoint x="487" y="234" />
+        <di:waypoint x="393" y="234" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-24-_jbpm-unique-25" >
+        <di:waypoint x="292" y="169" />
+        <di:waypoint x="292" y="234" />
+        <di:waypoint x="393" y="234" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-22-_jbpm-unique-25" >
+        <di:waypoint x="388" y="106" />
+        <di:waypoint x="175" y="106" />
+        <di:waypoint x="175" y="234" />
+        <di:waypoint x="393" y="234" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-25-_jbpm-unique-26" >
+        <di:waypoint x="393" y="234" />
+        <di:waypoint x="395" y="310" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+
+</definitions>

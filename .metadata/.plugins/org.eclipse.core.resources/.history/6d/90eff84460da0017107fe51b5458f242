@@ -1,0 +1,21 @@
+package com.sinosoft.bpm.rule.bean.dto;
+
+import java.io.Serializable;
+
+public class RuleAnyPay implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	private double anyPayLossAmount = 0d;
+
+	public double getAnyPaylossAmount() {
+		return anyPaylossAmount;
+	}
+
+	public void setAnyPaylossAmount(double anyPaylossAmount) {
+		this.anyPaylossAmount = anyPaylossAmount;
+	}
+}
